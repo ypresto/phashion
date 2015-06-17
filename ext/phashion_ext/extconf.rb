@@ -3,13 +3,12 @@ require 'mkmf'
 HERE = File.expand_path(File.dirname(__FILE__))
 BUNDLE = Dir.glob("#{HERE}/pHash-*.tar.gz").first
 BUNDLE_PATH = BUNDLE.gsub(".tar.gz", "")
-$CFLAGS = " -x c++ #{ENV["CFLAGS"]}"
 $includes = " -I#{HERE}/include"
 $libraries = " -L#{HERE}/lib -L/usr/local/lib"
 $LIBPATH = ["#{HERE}/lib"]
-$CFLAGS = "#{$includes} #{$libraries} #{$CFLAGS}"
+$CFLAGS = " -x c++ #{$includes} #{$libraries} #{$CFLAGS}"
 $LDFLAGS = "#{$libraries} #{$LDFLAGS}"
-$CXXFLAGS = ' -pthread'  
+$CXXFLAGS = " -pthread #{$CXXFLAGS}"
 
 Dir.chdir(HERE) do
   if File.exist?("lib")
